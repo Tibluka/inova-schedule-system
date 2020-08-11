@@ -1,0 +1,29 @@
+<main>
+    <div class="title">
+        <h2>ATENDIMENTO DE SEGUNDA À SEXTA-FEIRA</h2>
+        <p>Não são realizados atendimentos aos sábados e domingos.</p>
+    </div>
+
+    <form class="schedule-form">
+        <div class="full-name">
+            <label for="name">Nome completo</label>
+            <input type="text" required>
+        </div>
+
+        <div class="phone">
+            <label for="phone">Telefone</label>
+            <input type="text" required>
+        </div>
+
+        <div class="email">
+            <label for="email">Email</label>
+            <input type="text" required>
+        </div>
+
+        <mat-form-field class="document-list">
+            <mat-label>Quantos documentos serão apresentados</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="10" cdkAutosizeMaxRows="10" placeholder="Ex. 10 contratos para ser autenticados; 5 DUTs para reconhecer firmas"></textarea>
+        </mat-form-field>
+    </form>
+
+</main>
