@@ -1,6 +1,6 @@
 <main>
     <div class="title">
-        <h2>ATENDIMENTO DE SEGUNDA À SEXTA-FEIRA</h2>
+        <h4>ATENDIMENTO DE SEGUNDA À SEXTA-FEIRA</h4>
         <p>Não são realizados atendimentos aos sábados e domingos.</p>
     </div>
 
@@ -21,25 +21,37 @@
             <mat-label for="phone">Telefone</mat-label>
             <input matInput formControlName="phone" type="text" required>
         </mat-form-field>
-            <mat-form-field class="example-full-width">
-                <mat-label>Email</mat-label>
-                <input matInput formControlName="email" placeholder="Ex. pat@example.com">
-                <mat-error *ngIf="email.invalid">
-                    <span *ngIf="email.errors.required">
-                        Esse campo é obrigatório
-                    </span>
-                    <span *ngIf="email.errors.email">
-                        E-mail inválido
-                    </span>
-                </mat-error>
-            </mat-form-field>
-
+        <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" placeholder="Ex. pat@example.com" required>
+            <mat-error *ngIf="email.invalid">
+                <span *ngIf="email.errors.required">
+                    Esse campo é obrigatório
+                </span>
+                <span *ngIf="email.errors.email">
+                    E-mail inválido
+                </span>
+            </mat-error>
+        </mat-form-field>
         <mat-form-field class="example-full-width">
             <mat-label>Quantos documentos serão apresentados</mat-label>
             <textarea matInput formControlName="details" cdkTextareaAutosize cdkAutosizeMinRows="5"
                 cdkAutosizeMaxRows="10"
-                placeholder="Ex. 10 contratos para ser autenticados; 5 DUTs para reconhecer firmas"></textarea>
+                placeholder="Ex. 10 contratos para ser autenticados; 5 DUTs para reconhecer firmas" required></textarea>
         </mat-form-field>
+        <mat-form-field class="example-half-width">
+            <mat-label>Inherited calendar color</mat-label>
+            <input matInput [matDatepickerFilter]="myFilter" formControlName="date" [matDatepicker]="picker1">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+            <mat-error>
+                Data inválida
+            </mat-error>
+        </mat-form-field>
+        <div class="example-button-row">
+            <button mat-raised-button color="primary">Agendar</button>
+        </div>
+
     </form>
 
 </main>

@@ -9,14 +9,22 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./schedule.component.scss']
 })
 export class ScheduleComponent implements OnInit {
-
+  
+dias_disponiveis = ''
 
   profileForm = this.fb.group({
     fullName: ['', [Validators.required, Validators.minLength(3)]],
     email: ['', [Validators.required, Validators.email]],
     phone: ['', Validators.required],
-    details: ['', Validators.required]
+    details: ['', Validators.required],
+    date: ['', Validators.required]
   });
+
+  myFilter = (d: Date | null): boolean => {
+    const day = (d || new Date()).getDay();
+    // Prevent Saturday and Sunday from being selected.
+    return (day !== 0 && day !== 6);
+  }
 
   constructor(private fb: FormBuilder) {
 
@@ -30,6 +38,10 @@ export class ScheduleComponent implements OnInit {
   }
   get email() {
     return this.profileForm.get('email');
+  }
+
+  get datepicker() {
+    return this.profileForm.get('datepicker');
   }
 
 }
