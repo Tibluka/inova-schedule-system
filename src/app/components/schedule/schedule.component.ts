@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+
 
 @Component({
   selector: 'app-schedule',
@@ -7,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScheduleComponent implements OnInit {
 
-  constructor() { }
+
+  profileForm = this.fb.group({
+    fullName: ['', [Validators.required, Validators.minLength(3)]],
+    email: ['', [Validators.required, Validators.email]],
+    phone: ['', Validators.required],
+    details: ['', Validators.required]
+  });
+
+  constructor(private fb: FormBuilder) {
+
+  }
 
   ngOnInit(): void {
+  }
+
+  get fullName() {
+    return this.profileForm.get('fullName');
+  }
+  get email() {
+    return this.profileForm.get('email');
   }
 
 }

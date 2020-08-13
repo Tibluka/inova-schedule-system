@@ -4,25 +4,41 @@
         <p>Não são realizados atendimentos aos sábados e domingos.</p>
     </div>
 
-    <form class="schedule-form">
-        <div class="full-name">
-            <label for="name">Nome completo</label>
-            <input type="text" required>
-        </div>
+    <form class="schedule-form" [formGroup]="profileForm">
+        <mat-form-field class="example-full-width">
+            <mat-label for="name">Nome completo</mat-label>
+            <input matInput formControlName="fullName" type="text" required>
+            <mat-error *ngIf="fullName.invalid">
+                <span *ngIf="fullName.errors.required">
+                    Nome é obrigatório
+                </span>
+                <span *ngIf="fullName.errors.minlength?.actualLength < fullName.errors.minlength?.requiredLength">
+                    Nome precisa conter mais de 3 letras
+                </span>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-half-width">
+            <mat-label for="phone">Telefone</mat-label>
+            <input matInput formControlName="phone" type="text" required>
+        </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" placeholder="Ex. pat@example.com">
+                <mat-error *ngIf="email.invalid">
+                    <span *ngIf="email.errors.required">
+                        Esse campo é obrigatório
+                    </span>
+                    <span *ngIf="email.errors.email">
+                        E-mail inválido
+                    </span>
+                </mat-error>
+            </mat-form-field>
 
-        <div class="phone">
-            <label for="phone">Telefone</label>
-            <input type="text" required>
-        </div>
-
-        <div class="email">
-            <label for="email">Email</label>
-            <input type="text" required>
-        </div>
-
-        <mat-form-field class="document-list">
+        <mat-form-field class="example-full-width">
             <mat-label>Quantos documentos serão apresentados</mat-label>
-            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="10" cdkAutosizeMaxRows="10" placeholder="Ex. 10 contratos para ser autenticados; 5 DUTs para reconhecer firmas"></textarea>
+            <textarea matInput formControlName="details" cdkTextareaAutosize cdkAutosizeMinRows="5"
+                cdkAutosizeMaxRows="10"
+                placeholder="Ex. 10 contratos para ser autenticados; 5 DUTs para reconhecer firmas"></textarea>
         </mat-form-field>
     </form>
 

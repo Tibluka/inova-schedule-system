@@ -1,18 +1,12 @@
 main {
-    .full-name {
-        display: flex;
-        flex-direction: column;
-    }
-    .phone{
-        display: flex;
-        flex-direction: column;
-    }
-    .email{
-        display: flex;
-        flex-direction: column;
-    }
-    .document-list{
-        display: flex;
-        flex-direction: column;
-    }
+    display: flex;
+    flex-direction: column;
+}
+.example-full-width {
+    width: 100%;
+    margin: 5px auto;
+}
+.example-half-width {
+    width: 50%;
+    margin: 5px auto;
 }
