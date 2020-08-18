@@ -1,0 +1,75 @@
+<main>
+    <div class="title">
+        <h4>ATENDIMENTO DE SEGUNDA À SEXTA-FEIRA</h4>
+        <p>Não são realizados atendimentos aos sábados e domingos.</p>
+    </div>
+
+    <form class="schedule-form" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="example-full-width">
+            <mat-label for="name">Nome completo</mat-label>
+            <input matInput formControlName="nome" type="text">
+            <mat-error *ngIf="getValueForms('nome').invalid">
+                <span *ngIf="getValueForms('nome').errors.required">
+                    Nome é obrigatório
+                </span>
+                <span *ngIf="getValueForms('nome').errors.minlength?.actualLength < getValueForms('nome').errors.minlength?.requiredLength">
+                    Nome precisa conter mais de 2 letras
+                </span>
+                <span *ngIf="getValueForms('nome').errors.pattern">
+                    Informar o nome completo
+                </span>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-half-width">
+            <mat-label for="phone">Telefone</mat-label>
+            <input matInput formControlName="telefone" type="text" mask="(00) 00000-0000" >
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" placeholder="Ex. pat@example.com">
+            <mat-error *ngIf="getEmail.invalid">
+                <span *ngIf="getEmail.errors.required">
+                    Esse campo é obrigatório
+                </span>
+                <span *ngIf="getEmail.errors.email">
+                    E-mail inválido
+                </span>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Quantos documentos serão apresentados</mat-label>
+            <textarea matInput formControlName="documentos" cdkTextareaAutosize cdkAutosizeMinRows="5"
+                cdkAutosizeMaxRows="10"
+                placeholder="Ex. 10 contratos para ser autenticados; 5 DUTs para reconhecer firmas"></textarea>
+        </mat-form-field>
+        <div class="section" style="display: flex; flex-direction: column; justify-content: left;">
+            <mat-form-field class="example-half-width" style="margin-bottom: 10px;">
+                <mat-label>Data do agendamento</mat-label>
+                <input matInput [matDatepickerFilter]="myFilter" formControlName="dia" [matDatepicker]="picker1">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+                <mat-error *ngIf="dia.invalid">
+                    <span *ngIf="dia.errors.required">
+                        Data é obrigatória
+                    </span>
+                   
+                </mat-error>
+            </mat-form-field>
+            <div class="available-times">
+                <mat-radio-group formControlName="horario" aria-label="Select an option" *ngFor="let t of availableTimes">
+                    <mat-radio-button value="t">{{t}}</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div class="example-button-row" >
+            <button [disabled]="profileForm.invalid" mat-raised-button color="primary">Agendar</button>
+        </div>
+
+    </form>
+
+    <button (click)="getFormControlFields()">1</button>
+    <button (click)="getFormControlFields()">2</button>
+    <button (click)="getFormControlFields()">3</button>
+    <button (click)="getFields()">4</button>
+
+</main>

@@ -1,0 +1,40 @@
+.example-full-width {
+    width: 100%;
+    margin: 5px auto;
+}
+.example-half-width {
+    width: 50%;
+    margin: 5px auto;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    .title {
+        h4 {
+            font-weight: 700;
+        }
+    }
+    input {
+        font-size: 10pt;
+    }
+    .example-button-row {
+        margin: 40px 0;
+        button {
+            width: 100% !important;
+        }
+    }
+    .section {
+        display: flex;
+        flex-direction: column;
+        mat-form-field {
+            margin: 5px 0;
+        }
+        mat-radio-group {
+            margin: 5px 5px 0 0;
+            .available-times {
+                display: flex;
+            }
+        }
+    }
+}
